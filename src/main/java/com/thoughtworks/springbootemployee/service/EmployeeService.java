@@ -2,6 +2,7 @@ package com.thoughtworks.springbootemployee.service;
 
 import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.repository.EmployeeRepository;
+import com.thoughtworks.springbootemployee.service.exception.EmployeeNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,8 @@ public class EmployeeService {
             if (employeeUpdate.getGender() != null) {
                 employee.setGender(employeeUpdate.getGender());
             }
+        } else {
+            throw new EmployeeNotFoundException();
         }
         return employee;
     }
